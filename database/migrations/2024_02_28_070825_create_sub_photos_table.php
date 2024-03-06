@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sub_photos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('post_id')->constrained('posts');
+            $table->foreignId('post_id')->constrained('posts')->onDelete('cascade');
             $table->string('sub_image_url');
             $table->timestamps();
         });
