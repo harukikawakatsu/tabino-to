@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('location_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->string('image_url');
+            $table->text('comment')->nullable();
             $table->timestamps();
+            $table->integer('count_goods')->default(0);
         });
     }
 
