@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
     
-    public function getByLimit(int $limit_count = 0)
+    public function getByLimit(int $limit_count = 10)//ここの数をいじれば表示できる数制限できる
         {
             // updated_atで降順に並べたあと、limitで件数制限をかける
             return $this->orderBy('updated_at', 'DESC')->limit($limit_count)->get();
