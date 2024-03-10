@@ -16,7 +16,7 @@ use App\Http\Controllers\PostController;  //外部にあるPostControllerクラ�
 */
 
 Route::get('/', [PostController::class, 'index']);
-
+Route::get('/', [PostController::class, 'index'])->name('index')->middleware('auth');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -29,6 +29,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/posts', [PostController::class, 'index']);   
 
+Route::get('/posts/create', [PostController::class, 'create']);
 Route::get('/posts/{post}', [PostController::class ,'show']);
 // '/posts/{対象データのID}'にGetリクエストが来たら、PostControllerのshowメソッドを実行する
+Route::post('/posts', [PostController::class, 'store']);
+// postメソッドの時は、postの時にそのURLを受け取ってルートが処理する
 require __DIR__.'/auth.php';
