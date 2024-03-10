@@ -6,7 +6,13 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
+    <x-app-layout>
+    <x-slot name="header">
+        　トップページへようこそ
+    </x-slot>
     <body>
+        <a href='/login'>ログイン</a>
+        <a href='/register'>新規登録</a>
         <h1>Blog Name</h1>
         <div class='posts'>
             @foreach ($posts as $post)
@@ -19,5 +25,10 @@
                 </div>
             @endforeach
         </div>
+        <a href='/posts/create'>create</a>
+        <!--ほんとはフッターに登録したい-->
+        ログインユーザー名{{ Auth::user()->name }}
+        <!--ほんとはフッターに登録したい-->
     </body>
+    </x-app-layout>
 </html>
