@@ -34,4 +34,6 @@ Route::get('/posts/{post}', [PostController::class ,'show']);
 // '/posts/{対象データのID}'にGetリクエストが来たら、PostControllerのshowメソッドを実行する
 Route::post('/posts', [PostController::class, 'store']);
 // postメソッドの時は、postの時にそのURLを受け取ってルートが処理する
+Route::get('/posts/{post}/edit', [PostController::class, 'edit']);
+Route::put('/posts/{post}', [PostController::class, 'update']);
 require __DIR__.'/auth.php';

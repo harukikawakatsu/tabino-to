@@ -11,13 +11,14 @@
         <h1 class="comment">
             {{ $post->comment }}
         </h1>
-        <div class="content">
+        <div class="image_url">
             <div class="image_url">
                 <h3>photo</h3>
                 <p>{{ $post->image_url }}</p>    
             </div>
         </div>
         <div class="footer">
+            <div class="edit"><a href="/posts/{{ $post->id }}/edit">編集</a></div>
             <a href="/">戻る</a>
         </div>
     </body>

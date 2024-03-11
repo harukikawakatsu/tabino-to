@@ -12,12 +12,12 @@
         @csrf
         
         <div class="comment">
-            <h2>Comment</h2>
+            <h2>コメント</h2>
             <textarea name="post[comment]" placeholder="写真の情報を自由に記述してください"></textarea>
         </div>
         
         <div class="image_url">
-            <h2>Photo</h2>
+            <h2>写真</h2>
             <input type="file" name="post[image_url]">
         </div>
         
