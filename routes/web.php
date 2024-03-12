@@ -36,4 +36,5 @@ Route::post('/posts', [PostController::class, 'store']);
 // postメソッドの時は、postの時にそのURLを受け取ってルートが処理する
 Route::get('/posts/{post}/edit', [PostController::class, 'edit']);
 Route::put('/posts/{post}', [PostController::class, 'update']);
+Route::delete('/posts/{post}', [PostController::class,'delete']);
 require __DIR__.'/auth.php';
