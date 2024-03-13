@@ -17,6 +17,9 @@
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
+                    <h2 class='username'>
+                        <p>投稿者: {{ $post->user->name }}</p>
+                    </h2>
                     <h2 class='image_url'>
                        <a href="/posts/{{ $post->id }}">{{ $post->image_url }}</a>
                     </2>

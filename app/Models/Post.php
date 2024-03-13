@@ -17,6 +17,37 @@ class Post extends Model
             return $this->orderBy('updated_at', 'DESC')->limit($limit_count)->get();
         }
         
+        
+    // 他のモデルとの関連を定義する
+    public function user()
+        {
+            return $this->belongsTo(User::class);
+        }
+        
+    public function category()
+        {
+            return $this->belongsTo(Category::class);
+        }
+        
+    public function location()
+        {
+            return $this->belongsTo(Location::class);
+        }
+        
+    public function sub_photos()
+        {
+            return $this->hasMany(Sub_photo::class);
+        }
+        
+    public function likes()
+        {
+            return $this->hasMany(Like::class);
+        }
+        
+    public function comments()
+        {
+            return $this->hasMany(Comment::class);
+        }
     protected $fillable = [
     'comment',
     'image_url',

@@ -42,6 +42,8 @@
             <x-primary-button class="ml-3">
                 {{ __('Log in') }}
             </x-primary-button>
+            アカウントをお持ちでない方
+            <a href='/register'>新規登録する</a>
         </div>
     </form>
 </x-guest-layout>
