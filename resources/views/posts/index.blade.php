@@ -21,7 +21,8 @@
                         <p>投稿者: {{ $post->user->name }}</p>
                     </h2>
                     <h2 class='image_url'>
-                       <a href="/posts/{{ $post->id }}">{{ $post->image_url }}</a>
+                       <a href="/posts/{{ $post->id }}">
+                <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/></a>
                     </2>
                     <h2 class='count_goods'>{{ $post->count_goods }}</h2>
                     <p class='comment'>{{ $post->comment }}</p>

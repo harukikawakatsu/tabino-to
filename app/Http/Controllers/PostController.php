@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
+use Cloudinary;  //use宣言するのを忘れずに
 
 /**
  * Post一覧を表示する
@@ -50,6 +51,14 @@ class PostController extends Controller
     public function store(Request $request, Post $post)
         {
             $input = $request['post'];
+            //cloudinaryへ画像を送信し、画像のURLを$image_urlに代入している
+            $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+            // dd($image_url);  //画像のURLを画面に表示
+            // $input = $request->input();//チャットGPTが追加したもの
+            $input += ['image_url' => $image_url];  //追加
+            // $input['image_url'] = $image_url;
+            
+            
             // $input['user_id'] = Auth::id(); // ログインユーザーのIDを取得して代入
             $post->fill($input)->save();
             return redirect('/posts/' . $post->id);
