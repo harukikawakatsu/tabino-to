@@ -7,6 +7,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
+    <x-app-layout>
     <body>
         <h1 class="username">
             投稿者: {{ $user->name }}
@@ -15,14 +16,12 @@
             {{ $post->comment }}
         </h1>
         <div class="image_url">
-            <div class="image_url">
-                <h3>photo</h3>
-                <p>{{ $post->image_url }}</p>    
-            </div>
+            <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
         </div>
         <div class="footer">
             <div class="edit"><a href="/posts/{{ $post->id }}/edit">編集</a></div>
             <a href="/">戻る</a>
         </div>
     </body>
+    </x-app-layout>
 </html>

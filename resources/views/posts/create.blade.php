@@ -18,7 +18,7 @@
         
         <div class="image_url">
             <h2>写真</h2>
-            <input type="file" name="post[image_url]">
+            <input type="file" name="image">
         </div>
         
         <!-- ユーザーのIDを表示する -->
