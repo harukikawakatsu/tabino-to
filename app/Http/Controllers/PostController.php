@@ -15,11 +15,19 @@ use App\Http\Requests\PostRequest;
  
 class PostController extends Controller
 {
-    public function index(Post $post)//インポートしたPostをインスタンス化して$postとして使用。
+    // public function index(Post $post)//インポートしたPostをインスタンス化して$postとして使用。
+    //     {
+    //         return view('posts.index')->with(['posts' => $post->getByLimit()]);
+    //          //blade内で使う変数'posts'と設定。'posts'の中身にgetを使い、インスタンス化した$postを代入。
+    //          //getbylimitでデータ取得数を制限出来るようにしている。
+    //     }
+    
+    public function index(Post $post)
         {
-            return view('posts.index')->with(['posts' => $post->getByLimit()]);
-             //blade内で使う変数'posts'と設定。'posts'の中身にgetを使い、インスタンス化した$postを代入。
-             //getbylimitでデータ取得数を制限出来るようにしている。
+            $posts = $post->getByLimit(); // 投稿を取得
+        
+            // 投稿に関連するユーザー情報も取得して一緒にビューに渡す
+            return view('posts.index')->with(['posts' => $posts->load('user')]);
         }
         
             /**
@@ -30,7 +38,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
         {
-            return view('posts.show')->with(['post' => $post]);
+            return view('posts.show')->with(['post' => $post, 'user' => $post->user]);
          //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
         }
         

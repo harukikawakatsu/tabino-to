@@ -8,6 +8,9 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
+        <h1 class="username">
+            投稿者: {{ $user->name }}
+        </h1>
         <h1 class="comment">
             {{ $post->comment }}
         </h1>
