@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
 use Cloudinary;  //use宣言するのを忘れずに
-
+use Illuminate\Support\Facades\Validator;
+use App\Models\Category;
 /**
  * Post一覧を表示する
  * 
@@ -42,24 +43,47 @@ class PostController extends Controller
             return view('posts.show')->with(['post' => $post, 'user' => $post->user]);
          //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
         }
-        
-    public function create()
+     
+        public function create(Category $category)
         {
-            return view('posts.create');
+            return view('posts.create')->with(['categories' => $category->get()]);
         }
         
     public function store(Request $request, Post $post)
         {
-            $input = $request['post'];
-            //cloudinaryへ画像を送信し、画像のURLを$image_urlに代入している
-            $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
-            // dd($image_url);  //画像のURLを画面に表示
-            // $input = $request->input();//チャットGPTが追加したもの
-            $input += ['image_url' => $image_url];  //追加
-            // $input['image_url'] = $image_url;
-            
-            
-            // $input['user_id'] = Auth::id(); // ログインユーザーのIDを取得して代入
+                     // バリデーションルールの定義
+            $rules = [
+                'image' => 'required|image', // 画像が必須であることを示すバリデーションルール
+                'post.comment' => 'required|string|max:255', // その他の必要なバリデーションルール
+                // 他のフォームフィールドに対するバリデーションルールを追加できます
+            ];
+        
+            // カスタムエラーメッセージの定義
+            $messages = [
+                'image.required' => '画像を選択してください。',
+                'post.comment.required' => 'コメントを入力してください。',
+                // 他のエラーメッセージも必要に応じて追加できます
+            ];
+        
+            // バリデーション実行
+            $validator = Validator::make($request->all(), $rules, $messages);
+        
+            // バリデーションが失敗した場合
+            if ($validator->fails()) {
+                return redirect('/posts/create') // バリデーションエラーが発生した際のリダイレクト先を指定します
+                    ->withErrors($validator) // エラーメッセージをセッションに保存します
+                    ->withInput(); // 入力値をセッションに保存します
+            }
+        
+            // 画像が送信されているか確認
+            if ($request->hasFile('image')) {
+                // 画像の処理を行う
+                $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+                $post->image_url = $image_url;
+            }
+        
+            // その他の処理
+            $input = $request->input('post');
             $post->fill($input)->save();
             return redirect('/posts/' . $post->id);
         }

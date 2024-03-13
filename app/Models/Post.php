@@ -51,7 +51,7 @@ class Post extends Model
     protected $fillable = [
     'comment',
     'image_url',
-    'user_id'
-    
+    'user_id',
+    'category_id'
 ];
 }
