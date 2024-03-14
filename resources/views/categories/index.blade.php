@@ -25,8 +25,8 @@
                 <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/></a>
                 <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
                     </2>
-                    <h2 class='count_goods'>{{ $post->count_goods }}</h2>
-                    <p class='comment'>{{ $post->comment }}</p>
+                    <h2 class='count_goods'>いいね！{{ $post->count_goods }}</h2>
+                    <p class='comment'>コメント：{{ $post->comment }}</p>
                 </div>
                 <!-- 削除ボタン -->
                 <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
@@ -36,10 +36,6 @@
                 </form>
             @endforeach
         </div>
-        <a href='/posts/create'>create</a>
-        <!--ほんとはフッターに登録したい-->
-        ログインユーザー名{{ Auth::user()->name }}
-        <!--ほんとはフッターに登録したい-->
         <div class='paginate'>
             {{ $posts->links() }}
         </div>
