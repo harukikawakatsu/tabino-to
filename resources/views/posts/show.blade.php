@@ -18,6 +18,7 @@
         <div class="image_url">
             <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
         </div>
+        <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
         <div class="footer">
             <div class="edit"><a href="/posts/{{ $post->id }}/edit">編集</a></div>
             <a href="/">戻る</a>

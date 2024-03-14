@@ -17,20 +17,15 @@ use App\Models\Category;
  
 class PostController extends Controller
 {
-    // public function index(Post $post)//インポートしたPostをインスタンス化して$postとして使用。
-    //     {
-    //         return view('posts.index')->with(['posts' => $post->getByLimit()]);
-    //          //blade内で使う変数'posts'と設定。'posts'の中身にgetを使い、インスタンス化した$postを代入。
-    //          //getbylimitでデータ取得数を制限出来るようにしている。
-    //     }
-    
+   
     public function index(Post $post)
         {
-            $posts = $post->getByLimit(); // 投稿を取得
-        
-            // 投稿に関連するユーザー情報も取得して一緒にビューに渡す
-            return view('posts.index')->with(['posts' => $posts->load('user')]);
+            
+            $posts = $post->getPaginateByLimit(); // ページネーションを含む投稿を取得
+
+            return view('posts.index', ['posts' => $posts]);
         }
+        
         
             /**
      * 特定IDのpostを表示する
