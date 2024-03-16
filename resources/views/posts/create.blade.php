@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <title>tabino-to</title>
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyBFpv91YFKQTqIsHlVuvzoSmzf1J81DBL4&language=ja"></script>
+    <!--<script src="https://maps.google.com/maps/api/js?key=AIzaSyBFpv91YFKQTqIsHlVuvzoSmzf1J81DBL4&language=ja"></script>-->
     
-    <style>
-html { height: 100% }
-body { height: 100% }
-#map { height: 50%; width: 50%}
-</style>
+<!--    <style>-->
+<!--html { height: 100% }-->
+<!--body { height: 100% }-->
+<!--#map { height: 50%; width: 50%}-->
+<!--</style>-->
 </head>
 <body>
     <x-app-layout>
@@ -37,6 +37,11 @@ body { height: 100% }
                     @endforeach
                 </select>
             </div>
+            
+            <div class="address">
+                <h2>住所</h2>
+                <input type="text" name="post[address]" placeholder="場所や住所を入力してください">
+            </div>
             <!-- ユーザーのIDを表示する -->
             <input type="hidden" name="post[user_id]" value="{{ Auth::id() }}">
             
@@ -48,16 +53,8 @@ body { height: 100% }
         </div>
     </x-app-layout>
     
-    <div id="map"></div>
+    <!--<div id="map"></div>-->
 
-    <script>
-        var MyLatLng = new google.maps.LatLng(35.6811673, 139.7670516);
-        var Options = {
-            zoom: 15,      //地図の縮尺値
-            center: MyLatLng,    //地図の中心座標
-            mapTypeId: 'roadmap'   //地図の種類
-        };
-        var map = new google.maps.Map(document.getElementById('map'), Options);
-    </script>
+   
 </body>
 </html>

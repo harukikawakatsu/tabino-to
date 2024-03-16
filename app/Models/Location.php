@@ -11,9 +11,9 @@ class Location extends Model
     
     protected $table = 'locations';
     
-    //「1対多」の関係なので'posts'と複数形に
+    //「1対多」の関係なので'posts'と複数形に→れは間違い
     public function posts()   
         {
-            return $this->hasMany(Post::class);  
+            return $this->hasOne(Post::class);  
     }
 }

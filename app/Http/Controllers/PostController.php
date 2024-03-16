@@ -8,6 +8,7 @@ use App\Http\Requests\PostRequest;
 use Cloudinary;  //use宣言するのを忘れずに
 use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
+use App\Models\Location;
 /**
  * Post一覧を表示する
  * 
@@ -80,6 +81,24 @@ class PostController extends Controller
             // その他の処理
             $input = $request->input('post');
             $post->fill($input)->save();
+            // return redirect('/posts/' . $post->id);
+            
+            // Geocoding APIを使用して座標を取得
+            $geocode = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($request->input('post.address')).'&key=AIzaSyDxY-KstgIdJ3b97xVDWl6U9lTdyreUQ-w');
+            $geocode = json_decode($geocode);
+            $latitude = $geocode->results[0]->geometry->location->lat;
+            $longitude = $geocode->results[0]->geometry->location->lng;
+            
+            // 座標情報を保存
+            $location = new Location;
+            $location->latitude = $latitude;
+            $location->longitude = $longitude;
+            $location->address = $request->input('post.address'); // 追加された行
+            $location->save();
+            
+            $post->location_id = $location->id;
+            $post->save;
+            
             return redirect('/posts/' . $post->id);
         }
         public function edit(Post $post)
