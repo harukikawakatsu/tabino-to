@@ -59,6 +59,8 @@ class Post extends Model
     'comment',
     'image_url',
     'user_id',
-    'category_id'
+    'category_id',
+    'location_id',
+    'count_goods'
 ];
 }
