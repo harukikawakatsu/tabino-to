@@ -37,8 +37,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
         {
-            return view('posts.show')->with(['post' => $post, 'user' => $post->user]);
-         //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
+            $address = $post->location->address; // 投稿の住所を取得
+            $user = $post->user; // 投稿のユーザー情報を取得
+            return view('posts.show')->with(['post' => $post, 'user' => $user, 'address' => $address]);
         }
      
         public function create(Category $category)
