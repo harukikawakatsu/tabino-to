@@ -6,6 +6,7 @@
         <title>Posts</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFpv91YFKQTqIsHlVuvzoSmzf1J81DBL4&callback=initMap" async defer></script>
     </head>
     <x-app-layout>
     <body>
@@ -22,7 +23,35 @@
         <div class="footer">
             <div class="edit"><a href="/posts/{{ $post->id }}/edit">編集</a></div>
             <a href="/">戻る</a>
+            
         </div>
+       
+       <div id="map" style="height: 400px;"></div>
+       
+        <script>
+    // ページがロードされるたびにinitMap()関数を実行する
+    window.onload = function() {
+        initMap();
+    };
+
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: {lat: {{ $post->location->latitude }}, lng: {{ $post->location->longitude }}} // 投稿の座標をセンターに設定
+        });
+
+        var marker = new google.maps.Marker({
+            position: {lat: {{ $post->location->latitude }}, lng: {{ $post->location->longitude }}}, // 投稿の座標にマーカーを設定
+            map: map,
+            title: '{{ $post->comment }}' // マーカーのタイトルにコメントを設定
+        });
+    }
+</script>
     </body>
     </x-app-layout>
+     
+    
+   
+    
+    
 </html>
