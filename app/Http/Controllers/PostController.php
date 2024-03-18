@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
 use App\Models\Location;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Like;
 /**
  * Post一覧を表示する
  * 
@@ -28,13 +30,7 @@ class PostController extends Controller
             return view('posts.index', ['posts' => $posts]);
         }
         
-        
-            /**
-     * 特定IDのpostを表示する
-     *
-     * @params Object Post // 引数の$postはid=1のPostインスタンス
-     * @return Reposnse post view
-     */
+     
     public function show(Post $post)
         {
             $address = $post->location->address; // 投稿の住所を取得
@@ -49,65 +45,7 @@ class PostController extends Controller
         
     public function store(Request $request, Post $post)
         {
-            //          // バリデーションルールの定義
-            // $rules = [
-            //     'image' => 'required|image', // 画像が必須であることを示すバリデーションルール
-            //     'post.comment' => 'required|string|max:255', // その他の必要なバリデーションルール
-            //     // 他のフォームフィールドに対するバリデーションルールを追加できます
-            // ];
-        
-            // // カスタムエラーメッセージの定義
-            // $messages = [
-            //     'image.required' => '画像を選択してください。',
-            //     'post.comment.required' => 'コメントを入力してください。',
-            //     // 他のエラーメッセージも必要に応じて追加できます
-            // ];
-        
-            // // バリデーション実行
-            // $validator = Validator::make($request->all(), $rules, $messages);
-        
-            // // バリデーションが失敗した場合
-            // if ($validator->fails()) {
-            //     return redirect('/posts/create') // バリデーションエラーが発生した際のリダイレクト先を指定します
-            //         ->withErrors($validator) // エラーメッセージをセッションに保存します
-            //         ->withInput(); // 入力値をセッションに保存します
-            // }
-        
-            // // 画像が送信されているか確認
-            // if ($request->hasFile('image')) {
-            //     // 画像の処理を行う
-            //     $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
-            //     $post->image_url = $image_url;
-            // }
-        
-            // // その他の処理
-            // $input = $request->input('post');
             
-            
-            // $post->fill($input)->save();
-            
-            // // return redirect('/posts/' . $post->id);
-            
-            // // Geocoding APIを使用して座標を取得
-            // $geocode = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($request->input('post.address')).'&key=AIzaSyDxY-KstgIdJ3b97xVDWl6U9lTdyreUQ-w');
-            // $geocode = json_decode($geocode);
-            // $latitude = $geocode->results[0]->geometry->location->lat;
-            // $longitude = $geocode->results[0]->geometry->location->lng;
-            
-            // // 座標情報を保存
-            // $location = new Location;
-            // $location->latitude = $latitude;
-            // $location->longitude = $longitude;
-            // $location->address = $request->input('post.address'); // 追加された行
-            // $location->save();
-            
-            // $post = new Post;
-            // $post->fill($input);
-            // $post->location_id = $location->id;
-            // $post->save();
-            
-            // return redirect('/posts/' . $post->id);
-           
         // バリデーションルールの定義
             $rules = [
                 'image' => 'required|image', // 画像が必須であることを示すバリデーションルール
@@ -186,5 +124,68 @@ class PostController extends Controller
                 $post->delete();
                 return redirect('/');
             }
+            
+        public function myPosts(Post $post)
+            {
+                $user = Auth::user();
+                $posts = $user->posts()->paginate(10); // ページネーションを含むユーザーの投稿を取得
+            
+                return view('posts.my-posts', ['posts' => $posts]);
+            }
         
+        // public function like(Post $post)
+        //     {
+        //         $user = Auth::user();
+            
+        //         // ユーザーがすでにいいねをしているかどうかを確認
+        //         if ($user->hasLiked($post)) {
+        //             return back()->with('error', '既にいいねしています');
+        //         }
+            
+        //         // いいねを作成
+        //         $like = new Like;
+        //         $like->user_id = $user->id;
+            
+        //         // 重複をチェックしてから保存
+        //         if ($post->likes()->save($like)) {
+        //             return back()->with('success', 'いいねしました');
+        //         } else {
+        //             return back()->with('error', 'いいねに失敗しました');
+        //         }
+        //     }
+        
+        public function like(Post $post)
+            {
+                $user = Auth::user();
+            
+                // ユーザーがすでにいいねをしているかどうかを確認
+                if ($user->hasLiked($post)) {
+                    return back()->with('error', '既にいいねしています');
+                }
+            
+                // いいねを作成
+                $like = new Like;
+                $like->user_id = $user->id;
+            
+                // 重複をチェックしてから保存
+                if ($post->likes()->save($like)) {
+                    // いいねが成功したら、投稿のいいね数を更新する
+                    $post->count_goods = $post->likes()->count();
+                    $post->save();
+            
+                    return back()->with('success', 'いいねしました');
+                } else {
+                    return back()->with('error', 'いいねに失敗しました');
+                }
+            }
+            
+            
+        public function getLikesForPost(Post $post)
+            {
+                // 投稿に関連するいいね情報を取得
+                $likes = $post->likes()->with('user')->get();
+            
+                // 取得したいいね情報をJSON形式で返す
+                return response()->json($likes);
+            }
 }
