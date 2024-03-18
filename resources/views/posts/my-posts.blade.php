@@ -5,14 +5,14 @@
         <title>Blog</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     </head>
     <x-app-layout>
     <x-slot name="header">
-        　トップページへようこそ
+        　自分の投稿
     </x-slot>
     <body>
-        <!--<a href='/login'>ログイン</a>-->
-        <!--<a href='/register'>新規登録</a>-->
+        <a href='/my-posts'>自分の投稿を見る</a>
         <h1>Blog Name</h1>
         <div class='posts'>
             @foreach ($posts as $post)
