@@ -171,17 +171,79 @@ class PostController extends Controller
                         }
         
         
-        public function edit(Post $post)
+        public function edit(Category $category)
         {
-            return view('posts.edit')->with(['post' => $post]);
+            return view('posts.create')->with(['categories' => $category->get()]);
         }
     
         public function update(Request $request, Post $post)
         {
-            $input_post = $request['post'];
-            $post->fill($input_post)->save();
+             // バリデーションルールの定義
+            $rules = [
+                'image' => 'required|image', // 画像が必須であることを示すバリデーションルール
+                'post.comment' => 'required|string|max:255', // その他の必要なバリデーションルール
+                'post.address' => 'nullable|string|max:255', // 住所が空でも問題ないようにバリデーションルールを追加
+            ];
         
-            return redirect('/posts/' . $post->id);
+            // カスタムエラーメッセージの定義
+            $messages = [
+                'image.required' => '画像を選択してください。',
+                'post.comment.required' => 'コメントを入力してください。',
+                // 他のエラーメッセージも必要に応じて追加できます
+            ];
+        
+            // バリデーション実行
+            $validator = Validator::make($request->all(), $rules, $messages);
+        
+            // バリデーションが失敗した場合
+            if ($validator->fails()) {
+                return redirect('/posts/create') // バリデーションエラーが発生した際のリダイレクト先を指定します
+                    ->withErrors($validator) // エラーメッセージをセッションに保存します
+                    ->withInput(); // 入力値をセッションに保存します
+            }
+        
+            // 画像が送信されているか確認
+            if ($request->hasFile('image')) {
+                // 画像の処理を行う
+                $image = $request->file('image')->getRealPath();
+                $upload = Cloudinary::upload($image)->getSecurePath();
+            } else {
+                $upload = null;
+            }
+        
+            // その他の処理
+            $input = $request->input('post');
+        
+            // 住所が空でない場合にのみ、座標を取得して保存
+            if (!empty($input['address'])) {
+                $geocode = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode($input['address']) . '&key=AIzaSyDxY-KstgIdJ3b97xVDWl6U9lTdyreUQ-w');
+                $geocode = json_decode($geocode);
+                $latitude = $geocode->results[0]->geometry->location->lat;
+                $longitude = $geocode->results[0]->geometry->location->lng;
+        
+                // 座標情報を保存
+                $location = new Location;
+                $location->latitude = $latitude;
+                $location->longitude = $longitude;
+                $location->address = $input['address'];
+                $location->save();
+        
+                // Postインスタンスを保存
+                $post = new Post;
+                $post->fill($input);
+                $post->image_url = $upload;
+                $post->location_id = $location->id;
+                $post->save();
+            } else {
+                // 住所が空の場合の処理
+                $post = new Post;
+                $post->fill($input);
+                $post->image_url = $upload;
+                $post->save();
+                    }
+                
+                    return redirect('/posts/' . $post->id);
+                        
         }
         
         public function delete(Post $post)
