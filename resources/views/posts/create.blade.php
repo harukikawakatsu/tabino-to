@@ -21,7 +21,7 @@
             
             <div class="comment">
                 <h2>コメント</h2>
-                <textarea name="post[comment]" placeholder="写真の情報を自由に記述してください"></textarea>
+                <textarea name="post[comment]" placeholder="写真の情報を自由に記述してください[必須]"></textarea>
             </div>
             
             <div class="image_url">

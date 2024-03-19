@@ -34,19 +34,32 @@
         initMap();
     };
 
+    
     function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 15,
-            center: {lat: {{ $post->location->latitude }}, lng: {{ $post->location->longitude }}} // 投稿の座標をセンターに設定
-        });
-
-        var marker = new google.maps.Marker({
-            position: {lat: {{ $post->location->latitude }}, lng: {{ $post->location->longitude }}}, // 投稿の座標にマーカーを設定
-            map: map,
-            title: '{{ $post->comment }}' // マーカーのタイトルにコメントを設定
-        });
-    }
-</script>
+            @if ($post->location)
+                var latitude = {{ $post->location->latitude }};
+                var longitude = {{ $post->location->longitude }};
+            @else
+                var latitude = null;
+                var longitude = null;
+            @endif
+        
+            var center = { lat: latitude, lng: longitude };
+        
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: center
+            });
+        
+            if (latitude && longitude) {
+                var marker = new google.maps.Marker({
+                    position: { lat: latitude, lng: longitude },
+                    map: map,
+                    title: '{{ $post->comment }}'
+                });
+            }
+        }
+        </script>
     </body>
     </x-app-layout>
      
