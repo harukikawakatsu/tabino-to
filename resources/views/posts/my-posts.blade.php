@@ -14,15 +14,21 @@
     <body>
         
         <a href='/my-posts'>自分の投稿を見る</a>
+        
         <h1>Blog Name</h1>
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
-                    <h2 class='username'>
-                        <p>投稿者: {{ $post->user->name }}</p>
+                  <div class='parent-container'>
+                    <h2 class='image'>
+                       <img src="{{ $post->user->image_url }}" alt="User Image">
                     </h2>
+                    <h2 class='username'>
+                        <p>{{ $post->user->name }}</p>
+                    </h2>
+                  </div>
                     <h2 class='image_url'>
-                       <a href="/posts/{{ $post->id }}">
+                       <a href="/main_posts/{{ $post->id }}">
                 <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/></a>
                 <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
                     </2>

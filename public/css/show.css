@@ -1,9 +1,3 @@
-.image_url img{
-    max-width: 500px;
-    padding: 20px;
-
-}
-
 .parent-container {
     display: flex;
     align-items: center; /* 垂直方向に中央揃え */
@@ -30,29 +24,3 @@
     font-weight: bold; /* ユーザー名の太字設定 */
 }
 
-
-/* いいねボタンのデフォルトスタイル */
-.like-button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    outline: none;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 5px 10px;
-}
-
-/* ハートアイコン */
-.heart-icon {
-    margin-right: 5px;
-}
-
-/* いいねされた状態のスタイル */
-.liked .heart-icon {
-    color: red; /* いいねがされたときに色を変更する */
-}
-
-/* いいねされた状態のテキストスタイル */
-.liked .like-text {
-    color: red; /* いいねがされたときに色を変更する */
-}
