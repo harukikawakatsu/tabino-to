@@ -6,36 +6,26 @@
         <title>Posts</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('css/show.css') }}">
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFpv91YFKQTqIsHlVuvzoSmzf1J81DBL4&callback=initMap" async defer></script>
     </head>
     <x-app-layout>
     <body>
-    　<div class="parent-container">
-        <div class="image">
-            <img src="{{ $user->image_url }}" alt="User Image">
-        </div>
         <h1 class="username">
-             {{ $user->name }}
+            投稿者: {{ $user->name }}
         </h1>
-      </div>
-      
-        
-        <div class="image_url">
-            <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
-        </div>
         <h1 class="comment">
             {{ $post->comment }}
         </h1>
+        <div class="image_url">
+            <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
+        </div>
         <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
         <div class="footer">
-            <div id="map" style="height: 200px;"></div>
-            <div class="edit"><a href="/posts/{{ $post->id }}/edit">編集</a></div>
             <a href="/">戻る</a>
             
         </div>
        
-       
+       <div id="map" style="height: 400px;"></div>
        
         <script>
     // ページがロードされるたびにinitMap()関数を実行する
