@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;  //外部にあるPostControllerクラスをインポート。
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/posts', [PostController::class, 'index']);   
 
 Route::get('/posts/create', [PostController::class, 'create'])->name('create');
+Route::post('/posts/{post}/comments', [CommentController::class, 'store']);
 Route::get('/posts/{post}/likes', [PostController::class, 'getLikesForPost']);
 Route::get('/posts/{post}', [PostController::class ,'show']);
 Route::get('/main_posts/{post}', [PostController::class ,'main_show']);
