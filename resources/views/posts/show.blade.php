@@ -69,6 +69,29 @@
             }
         }
         </script>
+        <div class="comments">
+    <h2>コメント</h2>
+    
+    <!-- コメント投稿フォーム -->
+    <form action="/posts/{{ $post->id }}/comments" method="post">
+        @csrf
+        <textarea name="content" rows="3" placeholder="コメントを入力してください"></textarea>
+        <button type="submit">投稿</button>
+    </form>
+    
+    <!-- コメント表示 -->
+    @foreach($post->comments as $comment)
+        <div class="comment">
+            <div class="comment-user">
+                <img src="{{ $comment->user->image_url }}" alt="{{ $comment->user->name }}">
+                <span>{{ $comment->user->name }}</span>
+            </div>
+            <div class="comment-content">
+                {{ $comment->content }}
+            </div>
+        </div>
+    @endforeach
+</div>
     </body>
     </x-app-layout>
      

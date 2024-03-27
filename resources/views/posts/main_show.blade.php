@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Posts</title>
         <!-- Fonts -->
+        <link rel="stylesheet" href="{{ asset('css/main_show.css') }}">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFpv91YFKQTqIsHlVuvzoSmzf1J81DBL4&callback=initMap" async defer></script>
     </head>
@@ -59,6 +60,38 @@
             }
         }
         </script>
+        <div class="comments">
+    <h2>コメント</h2>
+    
+    <!-- コメント投稿フォーム -->
+    <form action="/posts/{{ $post->id }}/comments" method="post">
+        @csrf
+        <textarea name="content" rows="3" placeholder="コメントを入力してください"></textarea>
+        <button class="comment_button" type="submit">投稿</button>
+    </form>
+    
+    <!-- コメント表示 -->
+    @foreach($post->comments as $comment)
+        <div class="comment">
+            <div class="comment-user">
+                <div class="comment_image">
+                <img src="{{ $comment->user->image_url }}" alt="{{ $comment->user->name }}">
+                </div>
+                <div class="comment_name">
+                <span>{{ $comment->user->name }}</span>
+                </div>
+            </div>
+            <div>&nbsp;:&nbsp;</div>
+            <div class="comment-content">
+                {{ $comment->content }}
+            </div>
+            <div>&nbsp;:&nbsp;</div>
+            <div class="comment-updated_at">
+                {{ $comment->updated_at }}
+            </div>
+        </div>
+    @endforeach
+</div>
     </body>
     </x-app-layout>
      
