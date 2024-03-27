@@ -9,12 +9,25 @@
     </head>
     <x-app-layout>
     <x-slot name="header">
-        　トップページへようこそ
+        　<span id="currentCategory"></span>に関連する投稿です
+        　<select id="categorySelect" name="get[category_id]">
+    <option value="none">ジャンルを選べます</option>    　    
+    <option value="all">すべて</option>    　    
+    <option value="1">山</option>
+    <option value="2">川</option>
+    <option value="3">公園</option>
+    <option value="4">植物</option>
+    <option value="5">都市</option>
+    <option value="6">動物</option>
+    <option value="7">空</option>
+    <option value="8">夜</option>
+    <option value="9">星</option>
+    <option value="10">建築物</option>
     </x-slot>
     <body>
+        <!--<a href="/categories/1">山</a>-->
         
-        <a href='/my-posts'>自分の投稿を見る</a>
-        
+</select>
         <h1>Blog Name</h1>
         <div class='posts'>
             @foreach ($posts as $post)
@@ -50,11 +63,11 @@
                     <p class='comment'>{{ $post->comment }}</p>
                 </div>
                 <!-- 削除ボタン -->
-                <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button type="button" onclick="deletePost({{ $post->id }})">削除</button> 
-                </form>
+                <!--<form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">-->
+                <!--    @csrf-->
+                <!--    @method('DELETE')-->
+                <!--    <button type="button" onclick="deletePost({{ $post->id }})">削除</button> -->
+                <!--</form>-->
             @endforeach
         </div>
         <div class='paginate'>
@@ -160,6 +173,45 @@
         likeButton.classList.toggle('liked');
     }
 </script>
+<!--カテゴリごとのページに遷移出来る仕組み-->
+<script>
+    document.getElementById('categorySelect').addEventListener('change', function() {
+        var categoryId = this.value;
+        if (categoryId === 'all') {
+            window.location.href = '/posts';
+        } else {
+            window.location.href = '/categories/' + categoryId;
+        }
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const categorySelect = document.getElementById('categorySelect');
+        const currentCategory = document.getElementById('currentCategory');
+
+        // ページ読み込み時にカテゴリIDを取得して、それに基づいてカテゴリ名を表示
+        const url = window.location.href;
+        const categoryId = url.split('/').pop();
+        if (categoryId !== '' && categoryId !== 'categories') {
+            const categoryOption = categorySelect.querySelector(`option[value="${categoryId}"]`);
+            if (categoryOption) {
+                currentCategory.textContent = categoryOption.textContent;
+            }
+        }
+
+        // カテゴリが選択されたときにカテゴリ名を更新
+        categorySelect.addEventListener('change', function () {
+            const selectedOption = categorySelect.options[categorySelect.selectedIndex];
+            if (selectedOption.value === 'all') {
+                currentCategory.textContent = '';
+            } else {
+                currentCategory.textContent = selectedOption.textContent;
+            }
+        });
+    });
+</script>
+
+
     </body>
     </x-app-layout>
 </html>

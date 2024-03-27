@@ -46,6 +46,16 @@
             <input type="hidden" name="post[user_id]" value="{{ Auth::id() }}">
             
             <input type="submit" value="投稿"/>
+            
+            @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
         </form>
     
         <div class="footer">
