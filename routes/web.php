@@ -45,7 +45,7 @@ Route::put('/posts/{post}', [PostController::class, 'update']);
 Route::delete('/posts/{post}', [PostController::class,'delete']);
 Route::get('/categories/{category}', [CategoryController::class,'index']);
 Route::middleware('auth')->get('/my-posts', [PostController::class, 'myPosts'])->name('my-posts');
-
+Route::get('/my_categories/{category}', [CategoryController::class,'my_posts']);
 require __DIR__.'/auth.php';
 
 

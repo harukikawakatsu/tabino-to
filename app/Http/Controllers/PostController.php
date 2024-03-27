@@ -59,12 +59,13 @@ class PostController extends Controller
                 'image' => 'required|image', // 画像が必須であることを示すバリデーションルール
                 'post.comment' => 'required|string|max:255', // その他の必要なバリデーションルール
                 'post.address' => 'nullable|string|max:255', // 住所が空でも問題ないようにバリデーションルールを追加
+                
             ];
         
             // カスタムエラーメッセージの定義
             $messages = [
-                'image.required' => '画像を選択してください。',
-                'post.comment.required' => 'コメントを入力してください。',
+                'image.required' => '(注）画像を選択してください。',
+                'post.comment.required' => '（注）コメントを入力してください。',
                 // 他のエラーメッセージも必要に応じて追加できます
             ];
         

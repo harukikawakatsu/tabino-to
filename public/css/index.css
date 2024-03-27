@@ -56,3 +56,8 @@
 .liked .like-text {
     color: red; /* いいねがされたときに色を変更する */
 }
+
+.post {
+    margin-top: 20px; /* 上に20pxの空白 */
+    margin-bottom: 20px; /* 下に20pxの空白 */
+}

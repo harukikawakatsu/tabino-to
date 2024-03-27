@@ -27,11 +27,11 @@
         <h1 class="comment">
             {{ $post->comment }}
         </h1>
-        <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
+        <a href="/my_categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
         <div class="footer">
             <div id="map" style="height: 200px;"></div>
             <div class="edit"><a href="/posts/{{ $post->id }}/edit">編集</a></div>
-            <a href="/">戻る</a>
+            <a href="/my-posts">戻る</a>
             
         </div>
        
