@@ -121,35 +121,88 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'image_url' => ['nullable', 'image'], // 画像のバリデーションを追加
-        ]);
+    //     $request->validate([
+    //         'name' => ['required', 'string', 'max:255'],
+    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+    //         'password' => ['required', 'confirmed', Rules\Password::defaults()],
+    //         'image' => ['required', 'image'], // 画像のバリデーションを追加
+    //     ]);
 
-        // 初期化
-        $image_url = null;
+    //     // 初期化
+    //     $image_url = null;
         
-        // 画像が送信されているか確認
-        if ($request->hasFile('image')) {
-            // 画像の処理を行う
-            $image = $request->file('image')->getRealPath();
-            $upload = Cloudinary::upload($image)->getSecurePath();
-            $image_url = $upload;
-        }
+    //     // 画像が送信されているか確認
+    //     if ($request->hasFile('image')) {
+    //         // 画像の処理を行う
+    //         $image = $request->file('image')->getRealPath();
+    //         $upload = Cloudinary::upload($image)->getSecurePath();
+    //         $image_url = $upload;
+    //     }
         
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'image_url' => $image_url, // 画像のURLを保存
-        ]);
+    //     $user = User::create([
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'password' => Hash::make($request->password),
+    //         'image_url' => $image_url, // 画像のURLを保存
+    //     ]);
 
-        event(new Registered($user));
+    //     event(new Registered($user));
 
-        Auth::login($user);
+    //     Auth::login($user);
         
-        return redirect(RouteServiceProvider::HOME);
+    //     return redirect(RouteServiceProvider::HOME);
+    // }
+    // バリデーションルールの定義
+    $rules = [
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+        'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        'image' => ['required', 'image'], // 画像のバリデーションを追加
+    ];
+
+    // カスタムエラーメッセージの定義
+    $messages = [
+        'name.required' => '(注）名前を入力してください。',
+        'email.required' => '（注）メールアドレスを入力してください。',
+        'password.required' => '（注）パスワードを入力してください。',
+        'image.required' => '（注）画像を選択してください。',
+        // 他のエラーメッセージも必要に応じて追加する
+    ];
+
+    // バリデーション実行
+    $validator = Validator::make($request->all(), $rules, $messages);
+
+    // バリデーションが失敗した場合
+    if ($validator->fails()) {
+        return redirect('/register') // バリデーションエラーが発生した際のリダイレクト先を指定します
+            ->withErrors($validator) // エラーメッセージをセッションに保存します
+            ->withInput(); // 入力値をセッションに保存します
     }
+
+    // バリデーションを通過した場合、以下の処理を実行
+    // 初期化
+    $image_url = null;
+    
+    // 画像が送信されているか確認
+    if ($request->hasFile('image')) {
+        // 画像の処理を行う
+        $image = $request->file('image')->getRealPath();
+        $upload = Cloudinary::upload($image)->getSecurePath();
+        $image_url = $upload;
+    }
+    
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+        'image_url' => $image_url, // 画像のURLを保存
+    ]);
+
+    event(new Registered($user));
+
+    Auth::login($user);
+    
+    return redirect(RouteServiceProvider::HOME);
+    }
+    
 }
