@@ -10,10 +10,12 @@
         </div>
         
         <!--image-->
+        <div class="image_box">
+        ⇩自分のアイコンの写真を選択してください
         <div class="image_url">
             <input type="file" name="image">
         </div>
-        
+        </div>
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
