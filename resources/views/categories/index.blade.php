@@ -24,7 +24,7 @@
     <option value="9">星</option>
     <option value="10">建築物</option>
     </x-slot>
-    <body>
+    <body class="body">
         <!--<a href="/categories/1">山</a>-->
         
 </select>

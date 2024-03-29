@@ -1,3 +1,7 @@
+<head>
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+</head>
+<body class="body">
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
@@ -66,3 +70,4 @@
     @endif
     </form>
 </x-guest-layout>
+</body>

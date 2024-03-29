@@ -9,7 +9,7 @@
     </head>
     <x-app-layout>
     <x-slot name="header">
-        　すべての投稿です
+        　<span id="currentCategory"></span>に関連する投稿です
         　<select id="categorySelect" name="get[category_id]">
 　　<option value="none">ジャンルを選べます</option>
 　　<option value="all">すべて</option>
