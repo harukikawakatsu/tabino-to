@@ -87,7 +87,7 @@
     text-decoration: none;
 }
 
-.paginationWrap ul.pagination li a.active {
+.paginationWrap ul.pagination .active {
     background-color: #4b90f6;
     color: white;
     border-radius: 40px;
