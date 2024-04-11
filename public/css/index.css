@@ -77,8 +77,8 @@
 }
 
 .paginationWrap ul.pagination li {
-  display: inline;
-  margin-right: 4px;
+    display: inline;
+    margin-right: 4px;
 }
 
 .paginationWrap ul.pagination li a {
@@ -98,4 +98,9 @@
 .paginationWrap ul.pagination li a:hover:not(.active) {
     background-color: #e1e7f0;
     border-radius: 40px;
+}
+
+.img {
+    background-size: cover;
+    background-position: center;
 }
