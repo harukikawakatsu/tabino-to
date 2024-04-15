@@ -62,6 +62,7 @@
     margin-bottom: 20px; /* 下に20pxの空白 */
 }
 
+<<<<<<< HEAD
 
 .paginationWrap {
     display: flex;
@@ -106,3 +107,9 @@
 }
 
 
+=======
+.img {
+    background-size: cover;
+    background-position: center;
+}
+>>>>>>> master
