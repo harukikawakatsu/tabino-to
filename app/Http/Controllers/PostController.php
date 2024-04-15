@@ -207,7 +207,7 @@ class PostController extends Controller
         public function myPosts(Post $post)
             {
                 $user = Auth::user();
-                $posts = $user->posts()->paginate(10); // ページネーションを含むユーザーの投稿を取得
+                $posts = $user->posts()->paginate(); // ページネーションを含むユーザーの投稿を取得
             
                 return view('posts.my-posts', ['posts' => $posts]);
             }

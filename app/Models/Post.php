@@ -25,6 +25,7 @@ class Post extends Model
             return $this::with('user')->with('category')->orderBy('updated_at', 'DESC')->paginate($limit_count);
         }
         
+    
     // 他のモデルとの関連を定義する
     public function user()
         {

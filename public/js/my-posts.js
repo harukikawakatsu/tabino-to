@@ -117,9 +117,9 @@
     document.getElementById('categorySelect').addEventListener('change', function() {
         var categoryId = this.value;
         if (categoryId === 'all') {
-            window.location.href = '/posts';
+            window.location.href = '/my-posts';
         } else {
-            window.location.href = '/categories/' + categoryId;
+            window.location.href = '/my_categories/' + categoryId;
         }
     });
 
@@ -148,4 +148,3 @@
             }
         });
     });
-
