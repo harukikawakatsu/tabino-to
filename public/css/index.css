@@ -62,7 +62,84 @@
     margin-bottom: 20px; /* 下に20pxの空白 */
 }
 
-<<<<<<< HEAD
+.image_url img{
+    max-width: 500px;
+    padding: 20px;
+
+}
+
+.parent-container {
+    display: flex;
+    align-items: center; /* 垂直方向に中央揃え */
+}
+
+.image {
+    width: 30px; /* 画像の幅を指定 */
+    height: 30px; /* 画像の高さを指定 */
+    overflow: hidden; /* 画像の外部をクリップして円形にする */
+    border-radius: 50%; /* 画像を円形にする */
+}
+
+.image img {
+    width: 100%; /* 画像を親要素に合わせる */
+    height: 100%; /* 高さも親要素に合わせる */
+    object-fit: cover; /* 画像を親要素に収まるようにオブジェクトを調整 */
+    object-position: center; /* 画像の中央に配置 */
+    display: block; /* 画像をブロック要素として扱う */
+}
+
+.username {
+    display: inline-block;
+    font-size: 25px; /* ユーザー名のフォントサイズを調整 */
+    font-weight: bold; /* ユーザー名の太字設定 */
+}
+
+.yokonarabi {
+  display: flex;
+  align-items: center; /* 垂直方向の中央揃え */
+}
+
+.category
+ {
+  margin-right: 10px; /* 要素間のスペースを調整 */
+  margin-left: 20px; /* 要素間のスペースを調整 */
+}
+
+/* いいねボタンのデフォルトスタイル */
+.like-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 10px;
+    margin-right: 10px; /* 要素間のスペースを調整 */
+}
+
+.count_goods {
+  margin-right: 10px; /* 要素間のスペースを調整 */
+}
+/* ハートアイコン */
+.heart-icon {
+    margin-right: 5px;
+}
+
+/* いいねされた状態のスタイル */
+.liked .heart-icon {
+    color: red; /* いいねがされたときに色を変更する */
+}
+
+/* いいねされた状態のテキストスタイル */
+.liked .like-text {
+    color: red; /* いいねがされたときに色を変更する */
+}
+
+.post {
+    margin-top: 20px; /* 上に20pxの空白 */
+    margin-bottom: 20px; /* 下に20pxの空白 */
+}
+
 
 .paginationWrap {
     display: flex;
@@ -106,10 +183,6 @@
     background-position: center;
 }
 
-
-=======
-.img {
-    background-size: cover;
-    background-position: center;
+.comment {
+    margin-left: 20px; /* 要素間のスペースを調整 */
 }
->>>>>>> master

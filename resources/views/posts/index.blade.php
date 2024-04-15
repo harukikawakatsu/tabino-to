@@ -43,7 +43,8 @@
                     <h2 class='image_url'>
                        <a href="/main_posts/{{ $post->id }}">
                 <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/></a>
-                <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
+                <div class='yokonarabi'>
+                <a class='category' href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
                     </2>
                     
                     
@@ -59,7 +60,7 @@
                     <h2 class='count_goods'>
                         <button class="show-likes" data-post-id="{{ $post->id }}">いいねした人</button>
                     </h2>
-                    
+                    </div>
                     <p class='comment'>{{ $post->comment }}</p>
                 </div>
                 <!-- 削除ボタン -->
