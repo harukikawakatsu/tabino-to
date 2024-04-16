@@ -92,6 +92,8 @@
         </div>
     @endforeach
 </div>
+
+<a href="/my-posts">戻る</a>
     </body>
     </x-app-layout>
      

@@ -27,9 +27,6 @@
     </x-slot>
     <body>
         
-        <a href='/my-posts'>自分の投稿を見る</a>
-        
-        <h1>Blog Name</h1>
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
