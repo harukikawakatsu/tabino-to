@@ -1,5 +1,6 @@
 <head>
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+    
 </head>
 <body class="body">
 <x-guest-layout>

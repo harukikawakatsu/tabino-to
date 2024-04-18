@@ -23,12 +23,13 @@
     <option value="8">夜</option>
     <option value="9">星</option>
     <option value="10">建築物</option>
-    </x-slot>
-    <body class="body">
-        <!--<a href="/categories/1">山</a>-->
-        
 </select>
-        <h1>Blog Name</h1>
+    </x-slot>
+    <body>
+        
+        
+
+        
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
@@ -40,13 +41,12 @@
                         <p>{{ $post->user->name }}</p>
                     </h2>
                   </div>
-                    <h2 class='image_url'>
+                  <div class='separator'>  
                        <a href="/main_posts/{{ $post->id }}">
-                <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/></a>
-                <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
-                    </2>
-                    
-                    
+                <img class='image_url' src="{{ $post->image_url }}" alt="画像が読み込めません。"/></a>
+                
+                <div class='yokonarabi'>
+                <a class='category' href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
                     
                     <form action="/posts/{{ $post->id }}/likes" method="post">
                         @csrf
@@ -59,15 +59,11 @@
                     <h2 class='count_goods'>
                         <button class="show-likes" data-post-id="{{ $post->id }}">いいねした人</button>
                     </h2>
-                    
+                    </div>
                     <p class='comment'>{{ $post->comment }}</p>
                 </div>
-                <!-- 削除ボタン -->
-                <!--<form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">-->
-                <!--    @csrf-->
-                <!--    @method('DELETE')-->
-                <!--    <button type="button" onclick="deletePost({{ $post->id }})">削除</button> -->
-                <!--</form>-->
+                </div>
+                
             @endforeach
         </div>
         <div class='paginate'>

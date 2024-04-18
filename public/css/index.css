@@ -1,5 +1,11 @@
+
+.image_url {
+  width: 400px; /* 幅を指定 */
+    height: auto; /* 高さを自動調整（アスペクト比を保持） */
+}
+
 .image_url img{
-    max-width: 500px;
+    
     padding: 20px;
 
 }
@@ -30,7 +36,6 @@
     font-weight: bold; /* ユーザー名の太字設定 */
 }
 
-
 /* いいねボタンのデフォルトスタイル */
 .like-button {
     border: none;
@@ -40,12 +45,25 @@
     font-size: 16px;
     font-weight: bold;
     padding: 5px 10px;
+    margin-right: 10px; /* 要素間のスペースを調整 */
+    border-bottom: 3px dashed #4d9bc1; /* 下線の高さを調整 */
+    margin-bottom: 4px; /* 下線とボタンの間隔を狭める */
+   
+    
 }
 
+.count_goods {
+  margin-right: 10px; /* 要素間のスペースを調整 */
+  border-bottom: 3px dashed #4d9bc1;
+  vertical-align: bottom; 
+  padding-bottom: 5px; /* 下線とテキストの間隔を調整 */
+}
 /* ハートアイコン */
 .heart-icon {
     margin-right: 5px;
+    margin-bottom: 9px; /* 下線を上にずらす */
 }
+
 
 /* いいねされた状態のスタイル */
 .liked .heart-icon {
@@ -58,9 +76,17 @@
 }
 
 .post {
-    margin-top: 20px; /* 上に20pxの空白 */
-    margin-bottom: 20px; /* 下に20pxの空白 */
+    
+    border-top: 1px solid #ddd; /* 上側の境界線 */
+    background: linear-gradient(to right, #FFFFCC,#006633 ); /* グラデーション */
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* 影 */
+    position: relative; /* 相対的な位置指定 */
+    padding: 20px; /* 内側の余白 */
+    
+    
 }
+
+
 
 .image_url img{
     max-width: 500px;
@@ -102,43 +128,18 @@
 .category
  {
   margin-right: 10px; /* 要素間のスペースを調整 */
-  margin-left: 20px; /* 要素間のスペースを調整 */
+  
+  border-bottom: 3px dashed #4d9bc1; /* 下線の高さを調整 */
+  padding-bottom: 5px; /* 下線とテキストの間隔を調整 */
 }
 
-/* いいねボタンのデフォルトスタイル */
-.like-button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    outline: none;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 5px 10px;
-    margin-right: 10px; /* 要素間のスペースを調整 */
-}
 
-.count_goods {
-  margin-right: 10px; /* 要素間のスペースを調整 */
-}
-/* ハートアイコン */
-.heart-icon {
-    margin-right: 5px;
-}
 
-/* いいねされた状態のスタイル */
-.liked .heart-icon {
-    color: red; /* いいねがされたときに色を変更する */
-}
 
-/* いいねされた状態のテキストスタイル */
-.liked .like-text {
-    color: red; /* いいねがされたときに色を変更する */
-}
 
-.post {
-    margin-top: 20px; /* 上に20pxの空白 */
-    margin-bottom: 20px; /* 下に20pxの空白 */
-}
+
+
+
 
 
 .paginationWrap {
@@ -166,7 +167,7 @@
 }
 
 .paginationWrap ul.pagination .active {
-    background-color: #4b90f6;
+    background-color: #ceb849;
     color: white;
     border-radius: 40px;
     width: 38px;
@@ -184,5 +185,19 @@
 }
 
 .comment {
-    margin-left: 20px; /* 要素間のスペースを調整 */
+    
+    position: relative;
+    width: 400px; /* 幅を指定 */
+    margin-top: 5px;
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", "Hiragino Kaku Gothic ProN", メイリオ, meiryo, sans-serif;
+} 
+
+
+
+
+
+
+.separator {
+    
 }
+
