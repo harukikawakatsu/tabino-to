@@ -7,6 +7,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/index.css') }}">
         
+    
     </head>
     <x-app-layout>
     <x-slot name="header">
@@ -40,18 +41,17 @@
                         <p>{{ $post->user->name }}</p>
                     </h2>
                   </div>
-                    <h2 class='image_url'>
+                  <div class='separator'>
+                    
                        <a href="/main_posts/{{ $post->id }}">
-                <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/></a>
+                <img class="image_url" src="{{ $post->image_url }}" alt="画像が読み込めません。"/></a>
+                    
                 <div class='yokonarabi'>
                 <a class='category' href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
-                    </2>
-                    
-                    
-                    
+                
                     <form action="/posts/{{ $post->id }}/likes" method="post">
                         @csrf
-                        <!--<button type="submit" {{ Auth::user()->hasLiked($post) ? 'disabled' : '' }}>いいね</button>-->
+                        <!--<button ="submit" {{ Auth::user()->hasLiked($post) ? 'disabled' : '' }}>いいね</button>-->
                         <button id="like-button" class="like-button" onclick="toggleLike()" {{ Auth::user()->hasLiked($post) ? 'disabled' : '' }}>
                             <span class="heart-icon">&#10084;</span>{{ $post->count_goods }}
                             <span class="like-text"></span>
@@ -61,14 +61,11 @@
                         <button class="show-likes" data-post-id="{{ $post->id }}">いいねした人</button>
                     </h2>
                     </div>
+                    
                     <p class='comment'>{{ $post->comment }}</p>
                 </div>
-                <!-- 削除ボタン -->
-                <!--<form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">-->
-                <!--    @csrf-->
-                <!--    @method('DELETE')-->
-                <!--    <button type="button" onclick="deletePost({{ $post->id }})">削除</button> -->
-                <!--</form>-->
+                </div>
+                
             @endforeach
         </div>
         <div class='paginate'>

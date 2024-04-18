@@ -1,3 +1,14 @@
+.show {
+    
+    border-top: 1px solid #ddd; /* 上側の境界線 */
+    background: linear-gradient(to right, #FFFFCC,#006633 ); /* グラデーション */
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* 影 */
+    position: relative; /* 相対的な位置指定 */
+    padding: 20px; /* 内側の余白 */
+    
+    
+}
+
 .parent-container {
     display: flex;
     align-items: center; /* 垂直方向に中央揃え */
@@ -25,8 +36,8 @@
 }
 
 .comment_image {
-    width: 30px; /* 画像の幅を指定 */
-    height: 30px; /* 画像の高さを指定 */
+    width: 20px; /* 画像の幅を指定 */
+    height: 20px; /* 画像の高さを指定 */
     overflow: hidden; /* 画像の外部をクリップして円形にする */
     border-radius: 50%; /* 画像を円形にする */
 }
@@ -41,19 +52,174 @@
 
 .comment_name {
     display: inline-block;
-    font-size: 25px; /* ユーザー名のフォントサイズを調整 */
+    font-size: 15px; /* ユーザー名のフォントサイズを調整 */
     font-weight: bold; /* ユーザー名の太字設定 */
 }
-.comment-user {
+.comment_user {
     display: flex;
     align-items: center; /* 垂直方向に中央揃え */
+    
+}
+.comments{
+    margin-top: 5px;
+    width: 100vw; /* ビューポートの幅に対する100% */
+    font-weight: bold;
+    border-top: dashed 2px #333; /* 上側のボーダー */
+    border-bottom: dashed 2px #333; /* 下側のボーダー */
+    
+    background: linear-gradient(to right, #FFFFCC,#006633 ); /* グラデーション */
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* 影 */
+    position: relative; /* 相対的な位置指定 */
+   
 }
 
 .comment {
      display: flex;
     align-items: center; /* 垂直方向に中央揃え */
+    position: relative;
+    width: 400px; /* 幅を指定 */
+    margin-top: 5px;
+    font-weight: bold;
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", "Hiragino Kaku Gothic ProN", メイリオ, meiryo, sans-serif;
 }
 
 .comment_button {
     border: 1px solid black; /* 黒い実線 */
+}
+
+.yokonarabi {
+    display: flex; /* 横並びに配置 */
+}
+
+.map {
+    flex: 1; /* 子要素が均等に広がるように設定 */
+    margin-right: 20px; /* 子要素間の間隔 */
+}
+
+.image_url {
+    flex: 0 0 auto; /* 幅を固定 */
+    margin-right: 20px; /* 子要素間の間隔 */
+    width: 600px; /* 幅を指定 */
+    height: auto; /* 高さを自動調整（アスペクト比を保持） */
+}
+
+.category
+ {
+  margin-right: 10px; /* 要素間のスペースを調整 */
+  
+  border-bottom: 3px dashed #4d9bc1; /* 下線の高さを調整 */
+  padding-bottom: 5px; /* 下線とテキストの間隔を調整 */
+}
+
+.show_image {
+    width: 30px; /* 画像の幅を指定 */
+    height: 30px; /* 画像の高さを指定 */
+    overflow: hidden; /* 画像の外部をクリップして円形にする */
+    border-radius: 50%; /* 画像を円形にする */
+}
+
+.show_image img {
+    width: 100%; /* 画像を親要素に合わせる */
+    height: 100%; /* 高さも親要素に合わせる */
+    object-fit: cover; /* 画像を親要素に収まるようにオブジェクトを調整 */
+    object-position: center; /* 画像の中央に配置 */
+    display: block; /* 画像をブロック要素として扱う */
+}
+
+.show_name {
+    display: inline-block;
+    font-size: 25px; /* ユーザー名のフォントサイズを調整 */
+    font-weight: bold; /* ユーザー名の太字設定 */
+}
+.show_user {
+    display: flex;
+    align-items: center; /* 垂直方向に中央揃え */
+}
+
+.btn01{
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border-top: 1px solid #ddd; /* 上側の境界線 */
+    background: linear-gradient(to right, #FFFFCC,#006633 ); /* グラデーション */
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* 影 */
+    position: relative; /* 相対的な位置指定 */
+    padding: 20px; /* 内側の余白 */
+}
+
+.btn01 a {
+	background-color: #ceb849;
+	border: 1px solid #ceb849;
+	border-radius: 35px;
+	
+}
+
+.btn01 a:hover {
+	background-color: #B99b00;
+	border: 1px solid #333;
+}
+
+.btn01 a::before {
+	content: '';
+	position: absolute;
+	top: calc(50% - 5px);
+	right: -35px;
+	transform: rotate(30deg);
+	width: 12px;
+	height: 1px;
+	background-color: #333;
+}
+
+.btn01 a::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	right: -35px;
+	transform: translateY(-50%);
+	width: 70px;
+	height: 1px;
+	background-color: #333;
+}
+
+.edit{
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border-top: 1px solid #ddd; /* 上側の境界線 */
+    background: linear-gradient(to right, #FFFFCC,#006633 ); /* グラデーション */
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* 影 */
+    position: relative; /* 相対的な位置指定 */
+    padding: 20px; /* 内側の余白 */
+}
+
+.edit a {
+	background-color: #ceb849;
+	border: 1px solid #ceb849;
+	border-radius: 35px;
+	
+}
+
+.edit a:hover {
+	background-color: #B99b00;
+	border: 1px solid #333;
+}
+
+.edit a::before {
+	content: '';
+	position: absolute;
+	top: calc(50% - 5px);
+	right: -35px;
+	transform: rotate(30deg);
+	width: 12px;
+	height: 1px;
+	background-color: #333;
+}
+
+.edit a::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	right: -35px;
+	transform: translateY(-50%);
+	width: 70px;
+	height: 1px;
+	background-color: #333;
 }

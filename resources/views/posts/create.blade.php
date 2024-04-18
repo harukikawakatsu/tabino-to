@@ -10,13 +10,13 @@
 <!--body { height: 100% }-->
 <!--#map { height: 50%; width: 50%}-->
 <!--</style>-->
+<link rel="stylesheet" href="{{ asset('css/create.css') }}">
 </head>
 <body>
     <x-app-layout>
-        <h1>Blog Name</h1>
         
         <!-- コメントと写真の両方を含むフォーム -->
-        <form action="/posts" method="POST" enctype="multipart/form-data">
+        <form class='form' action="/posts" method="POST" enctype="multipart/form-data">
             @csrf
             
             <div class="comment">
@@ -58,7 +58,7 @@
     @endif
         </form>
     
-        <div class="footer">
+        <div class="btn01">
             <a href="/">戻る</a>
         </div>
     </x-app-layout>

@@ -1,0 +1,51 @@
+.form {
+    border-top: 1px solid #ddd; /* 上側の境界線 */
+    background: linear-gradient(to right, #FFFFCC,#006633 ); /* グラデーション */
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* 影 */
+    position: relative; /* 相対的な位置指定 */
+    padding: 20px; /* 内側の余白 */
+}
+
+.btn01{
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border-top: 1px solid #ddd; /* 上側の境界線 */
+    background: linear-gradient(to right, #FFFFCC,#006633 ); /* グラデーション */
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* 影 */
+    position: relative; /* 相対的な位置指定 */
+    padding: 20px; /* 内側の余白 */
+}
+
+.btn01 a {
+	background-color: #ceb849;
+	border: 1px solid #ceb849;
+	border-radius: 35px;
+	
+}
+
+.btn01 a:hover {
+	background-color: #B99b00;
+	border: 1px solid #333;
+}
+
+.btn01 a::before {
+	content: '';
+	position: absolute;
+	top: calc(50% - 5px);
+	right: -35px;
+	transform: rotate(30deg);
+	width: 12px;
+	height: 1px;
+	background-color: #333;
+}
+
+.btn01 a::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	right: -35px;
+	transform: translateY(-50%);
+	width: 70px;
+	height: 1px;
+	background-color: #333;
+}
