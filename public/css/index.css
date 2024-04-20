@@ -2,6 +2,7 @@
 .image_url {
   width: 400px; /* 幅を指定 */
     height: auto; /* 高さを自動調整（アスペクト比を保持） */
+    filter: drop-shadow(2px 2px 2px rgba(160, 160, 160, 0.8));
 }
 
 .image_url img{
@@ -48,6 +49,7 @@
     margin-right: 10px; /* 要素間のスペースを調整 */
     border-bottom: 3px dashed #4d9bc1; /* 下線の高さを調整 */
     margin-bottom: 4px; /* 下線とボタンの間隔を狭める */
+    filter: drop-shadow(2px 2px 2px rgba(160, 160, 160, 0.8));
    
     
 }
@@ -78,7 +80,7 @@
 .post {
     
     border-top: 1px solid #ddd; /* 上側の境界線 */
-    background: linear-gradient(to right, #FFFFCC,#006633 ); /* グラデーション */
+    background: linear-gradient(to right, #FFFFCC,#999900 ); /* グラデーション */
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* 影 */
     position: relative; /* 相対的な位置指定 */
     padding: 20px; /* 内側の余白 */
@@ -147,6 +149,7 @@
     justify-content: center;
     margin-top: 38px;
     margin-bottom: 40px;
+    filter: drop-shadow(2px 2px 2px rgba(160, 160, 160, 0.8));
 }
 
 .paginationWrap ul.pagination {
@@ -193,11 +196,4 @@
 } 
 
 
-
-
-
-
-.separator {
-    
-}
 
