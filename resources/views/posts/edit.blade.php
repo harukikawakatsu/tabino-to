@@ -2,21 +2,14 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <title>tabino-to</title>
-    <!--<script src="https://maps.google.com/maps/api/js?key=AIzaSyBFpv91YFKQTqIsHlVuvzoSmzf1J81DBL4&language=ja"></script>-->
-    
-<!--    <style>-->
-<!--html { height: 100% }-->
-<!--body { height: 100% }-->
-<!--#map { height: 50%; width: 50%}-->
-<!--</style>-->
-<link rel="stylesheet" href="{{ asset('css/edit.css') }}">
+    <title>たびノート</title>
+    <link rel="icon" href="{{ secure_asset('img/旅ノートロゴ.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('css/edit.css') }}">
 </head>
 <body>
     <x-app-layout>
-        
         <!-- コメントと写真の両方を含むフォーム -->
-        <form class='form' action="/posts" method="POST" enctype="multipart/form-data">
+        <form class="form" action="/posts" method="POST" enctype="multipart/form-data">
             @csrf
             
             <div class="comment">
@@ -30,7 +23,7 @@
             </div>
             
             <div class="category">
-                <h2>Category</h2>
+                <h2>カテゴリー</h2>
                 <select name="post[category_id]">
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -42,19 +35,16 @@
                 <h2>住所</h2>
                 <input type="text" name="post[address]" placeholder="場所や住所を入力してください">
             </div>
+            
             <!-- ユーザーのIDを表示する -->
             <input type="hidden" name="post[user_id]" value="{{ Auth::id() }}">
             
             <input type="submit" value="投稿"/>
         </form>
-    
+        
         <div class="btn01">
             <a href="/">戻る</a>
         </div>
     </x-app-layout>
-    
-    <!--<div id="map"></div>-->
-
-   
 </body>
 </html>
