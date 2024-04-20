@@ -101,6 +101,7 @@
     margin-right: 20px; /* 子要素間の間隔 */
     width: 600px; /* 幅を指定 */
     height: auto; /* 高さを自動調整（アスペクト比を保持） */
+    filter: drop-shadow(2px 2px 2px rgba(160, 160, 160, 0.8));
 }
 
 .category
@@ -144,6 +145,7 @@
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* 影 */
     position: relative; /* 相対的な位置指定 */
     padding: 20px; /* 内側の余白 */
+    filter: drop-shadow(2px 2px 2px rgba(160, 160, 160, 0.8));
 }
 
 .btn01 a {
