@@ -225,3 +225,14 @@
 	height: 1px;
 	background-color: #333;
 }
+
+
+.address {
+    margin-bottom: 0px; /* 下にスペースを追加してmapと間隔を空ける */
+    font-size: 25px; /* フォントサイズ */
+    color: #333; /* 文字色 */
+    text-align: center; /* 中央揃え（必要に応じて変更） */
+    flex: 1; /* 子要素が均等に広がるように設定 */
+    margin-left: 40px; /* 子要素間の間隔 */
+    font-weight:bold
+}

@@ -21,6 +21,14 @@ use App\Models\Like;
  
 class PostController extends Controller
 {
+    public function first_index(Post $post)
+        {
+            
+            $posts = $post->getPaginateByLimit(); // ページネーションを含む投稿を取得
+
+            return view('posts.first_index', ['posts' => $posts]);
+        }
+    
    
     public function index(Post $post)
         {

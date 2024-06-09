@@ -14,9 +14,9 @@
     <x-app-layout>
         <div class="show">
             <div class="btn btn01">
-                <a href="/">自分の投稿に戻る</a>
+                <a href="/my-posts">自分の投稿に戻る</a>
             </div>
-            
+            <div class='yokonarabi'>
             <div class="show_user">
                 <div class="show_image">
                     <img src="{{ $user->image_url }}" alt="{{ $user->name }}">
@@ -26,6 +26,10 @@
                 </div>
             </div>
             
+                <a class='address'>
+                    {{ $post->location->address }}
+                </a>
+            </div>
             <div class="yokonarabi">
                 <div>
                     <img class="image_url" src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
