@@ -21,4 +21,10 @@ class CategoryController extends Controller
     
     return view('categories.my-posts', ['posts' => $posts]);
 }
+
+public function first_index(Category $category)
+{
+return view('categories.first_index')->with(['posts' => $category->getByCategory()]);
 }
+}
+

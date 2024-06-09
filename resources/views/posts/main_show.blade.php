@@ -14,9 +14,9 @@
     <x-app-layout>
         <div class="show">
             <div class="btn btn01">
-                <a href="/">みんなの投稿に戻る</a>
+                <a href="/posts">みんなの投稿に戻る</a>
             </div>
-            
+            <div class="yokonarabi">
             <div class="show_user">
                 <div class="show_image">
                     <img src="{{ $user->image_url }}" alt="{{ $user->name }}">
@@ -26,13 +26,19 @@
                 </div>
             </div>
             
+                <a class='address'>
+                    {{ $post->location->address }}
+                </a>
+            </div>
             <div class="yokonarabi">
                 <div>
                     <img class="image_url" src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
                 </div>
+                
+                
+            
                 <div class="map" id="map" style="height: 400px;"></div>
             </div>
-            
             <div>
                 <a class="category" href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
             </div>
@@ -103,7 +109,7 @@
         </div>
         
         <div class="btn btn01">
-            <a href="/">みんなの投稿に戻る</a>
+            <a href="/posts">みんなの投稿に戻る</a>
         </div>
     </x-app-layout>
 </body>

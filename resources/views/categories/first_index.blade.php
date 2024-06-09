@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <meta name="description" content="風景写真の記録、シェア、閲覧をすることが出来る画像投稿型SNSです。旅行先に困ったとき、このサイトの風景画像を見て惹かれた場所に赴くのもよし、このサイトを利用して旅行気分を味わうのもよし、お好きに利用ください。">
+    <meta name="keywords" content="風景写真,旅行,SNS,インスタ,撮影場所,たびノート,日本の風景,風景,撮影,写真家,動物の写真,たび,旅,日本一周,シェア,さつえい,景色,けしき,写真,自然,公園">
     <meta charset="utf-8">
     <title>たびノート</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/first_index.css') }}">
     <link rel="icon" href="{{ secure_asset('img/旅ノートロゴ.png') }}" type="image/x-icon">
 </head>
 <body>
-    <x-app-layout>
-        <x-slot name="header">
-            <<a class='category_word'>
+   <div class="container01">
+    <a href="{{ route('login') }}" class="btn btn-custom01">
+  <span class="btn-custom01-front">ログイン</span>
+  <i class="fas fa-angle-right fa-position-right"></i></a>
+  <div class="hover-text">新規登録、ログインをすると写真の投稿や自分の投稿の振り返りをすることが出来ます。</div>
+    </div>
+    <div class="container01">
+    <a href="{{ route('register') }}" class="btn btn-custom01">
+  <span class="btn-custom01-front">新規登録</span>
+  <i class="fas fa-angle-right fa-position-right"></i></a>
+  <div class="hover-text">新規登録、ログインをすると写真の投稿や自分の投稿の振り返りをすることが出来ます。</div>
+    </div>
+    
+    
+        <a class='category_word'>
             <span id="currentCategory"></span>
         </a>
         <label>
@@ -30,11 +44,16 @@
                 <option value="10" class="category-option">建築物</option>
             </select>
         </label>
-        </x-slot>
+    
+      
         
         <div class="posts">
+            
+            
             @foreach ($posts as $post)
+            
                 <div class="post">
+                    
                     <div class="parent-container">
                         <h2 class="image">
                             <img src="{{ $post->user->image_url }}" alt="User Image">
@@ -49,21 +68,7 @@
                             <img class="image_url" src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
                         </a>
                         
-                        <div class="yokonarabi">
-                            <a class="category" href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
-                            
-                            <form action="/posts/{{ $post->id }}/likes" method="post">
-                                @csrf
-                                <button id="like-button" class="like-button" onclick="toggleLike()" {{ Auth::user()->hasLiked($post) ? 'disabled' : '' }}>
-                                    <span class="heart-icon">&#10084;</span>{{ $post->count_goods }}
-                                    <span class="like-text"></span>
-                                </button>
-                            </form>
-                            
-                            <h2 class="count_goods">
-                                <button class="show-likes" data-post-id="{{ $post->id }}">いいねした人</button>
-                            </h2>
-                        </div>
+                  
                         
                         <p class="comment">{{ $post->comment }}</p>
                     </div>
@@ -75,7 +80,7 @@
             {{ $posts->links('pagination::default') }}
         </div>
         
-        <script src="{{ asset('js/index.js') }}"></script>
-    </x-app-layout>
+        <script src="{{ asset('js/first_index.js') }}"></script>
+   
 </body>
 </html>

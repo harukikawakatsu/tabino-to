@@ -188,7 +188,8 @@
 }
 
 .comment {
-    
+    font-weight: bold;
+    font-size: 15px;
     position: relative;
     width: 400px; /* 幅を指定 */
     margin-top: 5px;
@@ -241,15 +242,30 @@
 }
 
 
+@import "https://use.fontawesome.com/releases/v5.13.0/css/all.css";
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
 .btn,
 a.btn,
-button.btn { 
-  width: 200px;  /* 幅を200pxに設定 */
+button.btn {
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.5;
   position: relative;
   display: inline-block;
+  padding: 1rem 4rem;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -374,7 +390,6 @@ a.btn-custom01:active:after {
 
 /* 色を変えてかっこよくする */
 .custom-select {
-    width: 100px;  /* 幅を200pxに設定 */
     background-color: white; /* 背景色 */
     border: 1px solid #ccc; /* 境界線 */
     border-radius: 4px; /* 角を丸くする */
@@ -423,3 +438,26 @@ a.btn-custom01:active:after {
   
 }
 
+.form-container {
+    display: flex;
+    align-items: center; /* 縦方向のセンタリング */
+}
+
+.hover-text {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    z-index: 1000;
+}
+
+.container01 {
+    position: relative;
+    display: inline-block;
+}
+
+.btn-custom01:hover ~ .hover-text {
+    display: block;
+}

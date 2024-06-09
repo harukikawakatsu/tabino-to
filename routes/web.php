@@ -22,9 +22,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // PostController のルート
+Route::get('/', [PostController::class, 'first_index']);
+Route::get('/first_categories/{category}', [CategoryController::class,'first_index']);
+
 Route::controller(PostController::class)->middleware(['auth'])->group(function () {
-    Route::get('/', [PostController::class, 'index'])->name('index')->middleware('auth');
-    Route::get('/posts', [PostController::class, 'index']);
+    Route::get('/posts', [PostController::class, 'index'])->name('index');
     Route::get('/posts/create', [PostController::class, 'create'])->name('create');
     Route::post('/posts', [PostController::class, 'store']);
     Route::get('/posts/{post}', [PostController::class, 'show']);
